@@ -15,4 +15,4 @@ pip install pgtools
 
 <h2>tools</h2>
 
- - [screenmanager](documents/screenmanager.md)
+ - [screenmanager](pgtools/documents/screenmanager.md)
