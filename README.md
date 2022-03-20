@@ -1,4 +1,4 @@
-<h1>PgTools</h1>
+<h1>PygTools</h1>
 
 <p>This is a small plugin for pygame, which provides
 some tools to make creating games with pygame easier.
