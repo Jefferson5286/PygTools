@@ -178,21 +178,27 @@ while running:
 ````
 
 <h2>Reference</h2>
-<h2>_ScreenManager:_</h2>
+
+<h2>ScreenManager:</h2>
+
 ````python
 from pgtools.screenmanager import ScreenManager
 ````
+
 The ScreenManager, as the name implies, is the screen manager of the project,
 this is where it all happens, for each project there must be only one manager. For
 to use it simply instantiate the `ScreeManager()` class to a variable, pass
 `pygame.display.set_mode()` as a parameter.
+
 ````python
 display = pygame.display.set_mode([650, 300])
 manager = ScreenManager(display)
 ````
+
 And after that call the `update()` method in the main cycle of the project, from the
 manager variable, in this case `manager`, in `update()` pass `pygame.event.get()`
 as a parameter, and the rest he will do.
+
 ````python
 [...]
 
@@ -213,6 +219,7 @@ while running:
     manager.update(events)
     pygame.display.update()
 ````
+
 <h2>Class attributes</h2>
 
 | **name** 	| **type** 	| **default value** 	| **description** 	|
@@ -223,13 +230,17 @@ while running:
 | `starts_first_screen` 	| `boolean` 	| `True` 	| if the first screen to be shown in the window is the first one added in the manager 	|
 
 <h2>Method's:</h2>
+
 <h3>_update_</h3>
+
 ````
 ScreenManager().update()
 ````
+
 Method responsible for updating all Screens. Like any "update" method in
 pygame the ScreenManager `update()` must be called in the main project cycle
 for the Screens to be updated.
+
 ````python
 [...]
 
@@ -243,6 +254,7 @@ while running:
     
     [...]
 ````
+
 **parameters**
 
 | **name** 	| **type** 	| **default value** 	| **description** 	|
@@ -251,17 +263,21 @@ while running:
 
 -- -
 <h3>_external_screen_events_</h3>
+
 ````
 SreenManager().external_screen_events()
 ````
+
 Method responsible for creating the private events between the Screens, because in case
 the events of each Screen is in the `events` loop (this loop
 `for event in pygame.event.get(): [...]`) may conflict between them,
 For example, when pressing the Space key on the keyboard, a character jumps on the screen, while in the menu the same key is used for another function, thus executing two functions at the same time, and so that it does not
 If conflicts like this happen, `external_screen_events()` was created.
+
 >[!TIP] always use this method when `SreenManager().internal_screen_events = False`
 > thus requiring less processing as the events will not be in an internal loop
 > while the events are already being executed by the `external_screen_events()` method
+
 ````python
 [...]
 
@@ -274,6 +290,7 @@ while running:
 
     [...]
 ````
+
 **parameters**
 
 | **name** 	| **type** 	| **default value** 	| **description** 	|
@@ -281,13 +298,17 @@ while running:
 | `_event` 	| `pygame event` 	| undefined 	| parameter responsible for catching each event of the `for` loop 	|
 
 -- -
+
 <h3>_add_screen_</h3>
+
 ````
 ScreenManager().add_screen()
 ````
+
 Use it to add Screens. If `starts_first_screen = True` so
 added to the first Screen it will be saved as `current` ie when the window
 start will be the first to be drawn on the display.
+
 ````python
 sm = ScreenManager(display)
 
@@ -295,6 +316,7 @@ sm.add_screen(Menu(sm.surface))
 sm.add_screen(Game(sm.surface))
 sm.add_screen(Settings(sm.surface))
 ````
+
 **parameter**
 
 | **name** 	| **type** 	| **default value** 	| **description** 	|
@@ -302,13 +324,17 @@ sm.add_screen(Settings(sm.surface))
 | `target` 	| `screenmanager.Screen` 	| undefined 	| target class to add as Screen 	|
 
 -- -
+
 <h3>_change_current_</h3>
+
 ````
 ScreenManager().change_current()
 ````
+
 To make the Screen transition use it, in case you change from Screen manually by changing
 the value of the `current` attribute will not execute the output and input procedures
 from Screen.
+
 ````python
 [...]
 
@@ -317,6 +343,7 @@ if event.key == pygame.K_SPACE:
     
 [...]
 ````
+
 **parameter**
 
 | **name** 	| **type** 	| **default value** 	| **description** 	|
@@ -324,10 +351,13 @@ if event.key == pygame.K_SPACE:
 | `target` 	| `str` 	| undefined 	| target Screen name to be new current 	|
 
 -- -
+
 <h2>Screen</h2>
+
 ````python
 from pgtools.screenmanager import Screen
 ````
+
 Screen is just an `Abstract Base Classes`, where all screens must be
 based. classes are identified by the manager by class name
 in lower case so if you declare a class with the name "Menu", its name
@@ -348,7 +378,9 @@ class Menu(Screen):
     def on_event(self, _event):
         pass
 ````
+
 <h3>Method's</h3>:
+
 <h3>update</h3>
 
 ````python
@@ -395,6 +427,7 @@ def on_enter(self):
 Called upon entering Screen
 
 -- -
+
 <h3>_on_pre_enter_</h3>
 
 ````python
@@ -405,18 +438,23 @@ def on_pre_enter(self):
 Called before entering the Screen
 
 -- -
+
 <h3>_on_exit_</h3>
+
 ````python
 def on_exit(self):
     [...]
 ````
+
 Called when exiting Screen
 
 -- -
 
 <h3>_on_pre_exit_</h3>
+
 ````python
 def on_pre_exit(self):
     [...]
 ````
+
 Called before leaving Screen.
