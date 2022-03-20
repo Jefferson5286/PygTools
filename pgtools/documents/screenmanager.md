@@ -1,9 +1,9 @@
-<h1>ScreeManager</h1>
+<h1>screenmanager.py</h1>
 <p>ScreenManager is a small tool for pygame, for creating scenes and managing them.
 It was made in order to facilitate this process, which many (especially those who
 is starting in the library).</p>
 
-> [!OBS] A partir de agora, quando falar 'Screen', estarei me referindo as Cenas.
+> OBS: From now on, when I say 'Screen', I'll be referring to Scenes.
 
  - [ScreenManager](#screemanager)
       * [update](#_update_)
